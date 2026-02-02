@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Гифка локально</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #1a1a1a;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        .btn {
+            background: #ff3366;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 30px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background: #ff0040;
+            transform: scale(1.05);
+        }
+        
+        .gif-container {
+            display: none;
+            margin: 30px auto;
+            max-width: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3);
+            animation: show 0.5s;
+        }
+        
+        @keyframes show {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .gif {
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="btn" onclick="showGif()">че за хуйня блять</button>
+    
+    <div class="gif-container" id="gifBox">
+        <img class="gif" id="gifImg" alt="Гифка">
+    </div>
+
+    <script>
+        function showGif() {
+            const gifBox = document.getElementById('gifBox');
+            const gifImg = document.getElementById('gifImg');
+            
+            // ВАЖНО: укажи правильное имя файла!
+            // Если файл называется "спайк_Pin-OverchargeAnim.webp" - пиши так:
+            gifImg.src = 'спайк_Pin-OverchargeAnim.webp';
+            
+            // ИЛИ если ты переименовал в "гифка.webp":
+            // gifImg.src = 'гифка.webp';
+            
+            // ИЛИ если файл в папке "images":
+            // gifImg.src = 'images/спайк_Pin-OverchargeAnim.webp';
+            
+            gifBox.style.display = 'block';
+            
+            // Меняем текст кнопки
+            document.querySelector('.btn').textContent = 'Вот это да!';
+        }
+    </script>
+
+</body>
+</html>
