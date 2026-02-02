@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Гифка локально</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #000, #222);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial Black', sans-serif;
+        }
+        
+        h1 {
+            color: #fff;
+            text-shadow: 0 0 10px #ff0080;
+            margin-bottom: 50px;
+        }
+        
+        #showBtn {
+            background: #ff0080;
+            color: white;
+            border: none;
+            padding: 25px 50px;
+            font-size: 32px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 30px;
+            box-shadow: 0 0 30px #ff0080;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        #showBtn:hover {
+            background: #ff00aa;
+            transform: scale(1.1);
+            box-shadow: 0 0 50px #ff00aa;
+        }
+        
+        #gifBox {
+            display: none;
+            margin-top: 40px;
+            max-width: 600px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 0 60px #ff0080;
+            border: 5px solid white;
+            animation: popup 0.5s ease-out;
+        }
+        
+        @keyframes popup {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        #myGif {
+            width: 100%;
+            display: block;
+        }
+        
+        .status {
+            color: white;
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 10px 20px;
+            background: rgba(255, 0, 128, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>НАЖМИ НА КНОПКУ</h1>
+    
+    <button id="showBtn">че за хуйня блять</button>
+    
+    <div id="gifBox">
+        <img id="myGif" alt="Гифка">
+    </div>
+    
+    <div class="status" id="status">Ожидание...</div>
+
+    <script>
+        const btn = document.getElementById('showBtn');
+        const gifBox = document.getElementById('gifBox');
+        const gifImg = document.getElementById('myGif');
+        const status = document.getElementById('status');
+        
+        btn.addEventListener('click', function() {
+            // Показываем статус
+            status.textContent = 'Загружаю гифку...';
+            status.style.background = 'rgba(255, 200, 0, 0.3)';
+            
+            // Пробуем загрузить гифку
+            gifImg.src = 'gifka.gif';
+            
+            // Когда гифка загрузится
+            gifImg.onload = function() {
+                gifBox.style.display = 'block';
+                btn.textContent = 'ВАУ!';
+                btn.style.background = '#00ff88';
+                btn.style.boxShadow = '0 0 40px #00ff88';
+                status.textContent = 'Гифка загружена!';
+                status.style.background = 'rgba(0, 255, 136, 0.3)';
+            };
+            
+            // Если ошибка загрузки
+            gifImg.onerror = function() {
+                status.textContent = 'ОШИБКА: Файл gifka.gif не найден!';
+                status.style.background = 'rgba(255, 0, 0, 0.3)';
+                
+                // Показываем список файлов
+                console.log('Проверь, что файл gifka.gif находится в той же папке что и index.html');
+                
+                // Меняем текст кнопки
+                btn.textContent = 'Файл не найден!';
+                btn.style.background = '#ff0000';
+                btn.style.boxShadow = '0 0 30px #ff0000';
+            };
+        });
+    </script>
+
+</body>
+</html>
